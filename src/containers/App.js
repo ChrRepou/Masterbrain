@@ -24,7 +24,7 @@ function App() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000")
+    fetch("https://masterbrain-api.onrender.com")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -70,7 +70,7 @@ function App() {
   const _onSubmit = () => {
     setImageUrl(input);
 
-    fetch("http://localhost:3000/imageurl", {
+    fetch("https://masterbrain-api.onrender.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ input }),
@@ -79,7 +79,7 @@ function App() {
       .then((result) => {
         console.log("result:", result);
         if (result) {
-          fetch("http://localhost:3000/image", {
+          fetch("https://masterbrain-api.onrender.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: user.id }),

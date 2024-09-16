@@ -18,19 +18,19 @@ const Register = ({ onRouteChange, loadUser }) => {
   };
 
   const onSubmitRegister = (event) => {
-	event.preventDefault();
+    event.preventDefault();
     const body = JSON.stringify({ username, email, password });
-    fetch("http://localhost:3000/register", {
+    fetch("https://masterbrain-api.onrender.com/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body,
     })
       .then((res) => res.json())
       .then((data) => {
-		if (data.id) {
-			loadUser(data);
-			onRouteChange("home");
-		}
+        if (data.id) {
+          loadUser(data);
+          onRouteChange("home");
+        }
       })
       .catch(console.log);
   };

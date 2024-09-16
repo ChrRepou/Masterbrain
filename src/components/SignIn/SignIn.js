@@ -1,34 +1,35 @@
-import {useState} from 'react';
+import { useState } from "react";
 
-const SignIn = ({onRouteChange, loadUser}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignIn = ({ onRouteChange, loadUser }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onPasswordChange = (event) => {
     setPassword(event.target.value);
-  }
+  };
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);
-  }
+  };
 
   const onSubmitSignIn = (event) => {
     event.preventDefault();
-    const body = JSON.stringify({email, password});
-    console.log('body:', body);
-    fetch('http://localhost:3000/signin', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body
-    }).then(res => res.json()).then(data => {
-      if (data.id)
-      {
-        loadUser(data);
-        onRouteChange("home");
-      }
-
-    }).catch(console.log);
-  }
+    const body = JSON.stringify({ email, password });
+    console.log("body:", body);
+    fetch("https://masterbrain-api.onrender.com/signin", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.id) {
+          loadUser(data);
+          onRouteChange("home");
+        }
+      })
+      .catch(console.log);
+  };
 
   return (
     <article
@@ -76,11 +77,14 @@ const SignIn = ({onRouteChange, loadUser}) => {
               }
               type="submit"
               value="Sign in"
-			  onClick={onSubmitSignIn}
+              onClick={onSubmitSignIn}
             />
           </div>
           <div className={"lh-copy mt3"}>
-            <p className={"f6 link dim black db pointer"} onClick={() => onRouteChange("register")}>
+            <p
+              className={"f6 link dim black db pointer"}
+              onClick={() => onRouteChange("register")}
+            >
               Register
             </p>
           </div>
